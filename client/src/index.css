@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply font-body text-pine-900;
+  }
+  ::selection {
+    @apply bg-marigold text-pine-950;
+  }
+  *:focus-visible {
+    outline: 2px solid #E8A33D;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* The signature element: a ticket stub card with a perforated tear-line
+     between the main info panel and the date/status stub. */
+  .ticket-card {
+    position: relative;
+    background: #FBF6EC;
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px rgba(11, 26, 21, 0.06), 0 8px 24px -8px rgba(11, 26, 21, 0.35);
+  }
+
+  .ticket-perforation {
+    position: relative;
+    border-left: 2px dashed rgba(16, 36, 30, 0.22);
+  }
+
+  /* Semi-circle "punch" notches that make the perforation read as a torn ticket edge.
+     Their color must match whatever sits behind the card (the page background). */
+  .notch {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: #10241E;
+    left: -9px;
+  }
+  .notch-top { top: -9px; }
+  .notch-bottom { bottom: -9px; }
+
+  /* Ink-stamp badge used for CONFIRMED / CANCELLED states */
+  .stamp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid currentColor;
+    border-radius: 0.5rem;
+    padding: 0.15rem 0.6rem;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.08em;
+    transform: rotate(-8deg);
+  }
+
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
